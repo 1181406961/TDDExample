@@ -21,9 +21,12 @@ class TODORepo(object):
                 return item
 
     def create(self, form):
-        task = form.get('task')
-        username = form.get('username')
-        self.TODOS.append({"task": task, "username": username})
+        item = {
+            "task": form.get("task"),
+            "username": form.get("username")
+        }
+        self.TODOS.append(item)
+        return item
 
 
 class Todo(Resource):
@@ -32,8 +35,8 @@ class Todo(Resource):
 
     def post(self):
         form = self.get_form_data()
-        TODORepo().create(form)
-        return "success", 200
+        data = TODORepo().create(form)
+        return data, 200
 
     def get_form_data(self):
         parser = reqparse.RequestParser()
