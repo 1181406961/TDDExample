@@ -30,6 +30,11 @@ class TODORepo(object):
 
 
 class Todo(Resource):
+    def get(self, todo_id):
+        return TODORepo().retrieve("id", todo_id)
+
+
+class TodoList(Resource):
     def get(self):
         return TODORepo().all()
 
@@ -45,7 +50,8 @@ class Todo(Resource):
         return parser.parse_args()
 
 
-api.add_resource(Todo, '/todos')
+api.add_resource(TodoList, '/todos')
+api.add_resource(Todo, '/todos/<int:todo_id>')
 
 if __name__ == '__main__':
     app.run(debug=True)
