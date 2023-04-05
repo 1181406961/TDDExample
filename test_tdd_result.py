@@ -37,6 +37,7 @@ def parser_args(options, params):
 
 def parse(key, options, params):
     flag = f'-{key}'
+    # 利用多态替换条件分支
     parse_func = {
         bool: parse_bool,
         int: parse_int,
