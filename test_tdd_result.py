@@ -4,20 +4,21 @@ import pytest
 需求分析
 -l -p 8080 -d /usr/logs
 f   f v
+multi path:
+    -l -d /usr/logs -p 8080
 happy path:
-    -l true
-    -d 8080
-    -p /usr/logs
+    -l: true  
+    -d: /usr/logs
+    -p: 8080
 sad path:
-    -l t
-    -p 8080 9090
-    -p 
-    -d /usr/logs /usr
-    -d 
-default path:
-    -l false
-    -d ''
-    -p 0
+    -l abc
+       if empty default false
+    -d /usr/logs /etc
+       if empty default ''
+    -p: 8080 8090
+       if empty default 0
+    -d if exists not allow no param
+    -p if exists not allow no param
 '''
 
 
