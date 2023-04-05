@@ -17,6 +17,7 @@ def test_todos_post_api(client):
     response = client.post(f'/todos', json=item)
     repo = TODORepo()
     assert response.status_code == 201
+    assert len(repo.all()) == 4
     new_item = repo.retrieve('task', item['task'])
     assert new_item is not None
     assert new_item['username'] == item['username']
