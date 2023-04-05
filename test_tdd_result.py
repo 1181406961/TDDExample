@@ -38,6 +38,8 @@ def parser_args(options, params):
 def parse(key, options, params):
     flag = f'-{key}'
     # 利用多态替换条件分支
+    # 函数命名表达意思
+    # 小步骤替换多条件if分支
     parse_func = {
         bool: parse_bool,
         int: parse_int,
@@ -79,7 +81,7 @@ def parse_bool(flag, params):
     return exists
 
 
-# 大的测试逐一击破
+# 先写一个大的测试然后逐一击破。先进行意图编程
 def test_parser():
     options = {
         'l': bool,
@@ -92,6 +94,7 @@ def test_parser():
     assert args['d'] == '/usr/logs'
 
 
+# 步骤很小，可以很快速的定位问题
 def test_parse_l():
     options = {
         'l': bool
